@@ -12,6 +12,4 @@
 <script setup>
 import  Hero  from "./components/Hero.vue";
 </script>
-
-<style scoped>
-</style>
+<style scoped></style>
