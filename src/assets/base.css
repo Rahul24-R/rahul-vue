@@ -1,0 +1,59 @@
+/* Reset */
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #1D1D1F;
+    background: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html, body, #app {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    background: #FFFFFF;
+  }
+  
+  /* Layout container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  /* Section spacing */
+  .section {
+    padding: 120px 0;
+  }
+  
+  /* Headings */
+  h1 {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #6E6E73;
+  }
+  
