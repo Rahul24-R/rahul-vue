@@ -1,5 +1,8 @@
 <template>
     <section class="hero">
+        <div class="particles" ref="particlesRef">
+            <span v-for="n in 120" :key="n" class="particle"></span>
+        </div>
         <div class="hero-wrapper">
 
             <!-- LEFT SIDE -->
@@ -25,8 +28,10 @@
 <script setup>
 import { ref } from "vue"
 import { gsap } from "gsap"
+import { onMounted } from "vue"
 
 const imageRef = ref(null)
+const particlesRef = ref(null)
 
 const handleMove = (e) => {
     const rect = imageRef.value.getBoundingClientRect()
@@ -46,6 +51,20 @@ const handleMove = (e) => {
     })
 }
 
+const handleMouseMove = (e) => {
+    const { innerWidth, innerHeight } = window
+
+    const x = (e.clientX / innerWidth - 0.5) * 30
+    const y = (e.clientY / innerHeight - 0.5) * 30
+
+    gsap.to(particlesRef.value, {
+        x: x,
+        y: y,
+        duration: 1.2,
+        ease: "power3.out"
+    })
+}
+
 const resetTilt = () => {
     gsap.to(imageRef.value, {
         rotateX: 0,
@@ -55,15 +74,69 @@ const resetTilt = () => {
         ease: "power3.out"
     })
 }
+
+onMounted(() => {
+    window.addEventListener("mousemove", handleMouseMove)
+
+    const particles = document.querySelectorAll(".particle")
+    particles.forEach(p => {
+        const size = Math.random() * 4 + 2
+
+        p.style.width = size + "px"
+        p.style.height = size + "px"
+        p.style.left = Math.random() * 100 + "%"
+        p.style.top = Math.random() * 100 + "%"
+        p.style.animationDuration = (Math.random() * 20 + 20) + "s"
+        p.style.animationDelay = Math.random() * 30 + "s"
+        p.style.opacity = Math.random() * 0.5 + 0.2
+    })
+})
+
 </script>
   
 <style scoped>
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(180, 180, 180, 0.6);
+    animation: float linear infinite;
+}
+
+.particle:nth-child(odd) {
+    animation-duration: 16s;
+    opacity: 0.05;
+}
+
+.particle:nth-child(3n) {
+    animation-duration: 20s;
+    opacity: 0.07;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
 .hero {
+    position: relative;
     min-height: 100vh;
     width: 100%;
     background: #000;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .hero-wrapper {
@@ -75,6 +148,7 @@ const resetTilt = () => {
     align-items: center;
     justify-content: space-between;
     gap: 60px;
+    z-index: 2;
 }
 
 /* LEFT SIDE */
