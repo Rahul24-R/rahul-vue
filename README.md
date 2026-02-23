@@ -7,8 +7,9 @@ Designed to showcase modern frontend architecture, reactive UI engineering, and 
 
 ## 🌐 Live Demo
 
-🔗 **Coming Soon**  
+🔗 **Coming Soon - Done** 
 Deployment planned via GitHub Pages / Vercel.
+Hosted on vercel - [Here](https://rahul-vue.vercel.app/)
 
 ---
 
